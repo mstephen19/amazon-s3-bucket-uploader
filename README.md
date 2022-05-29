@@ -24,14 +24,14 @@ In this section, you provide the run ID of the actor, as well as the path for th
 
 Within `pathName` and `fileName`, you have access to 6 variables:
 
-| Variable      | Example                                | Description                                         |
-| ------------- | -------------------------------------- | --------------------------------------------------- |
-| `actorName`   | `my-actor`                             | The name of the actor matching the provided run ID. |
-| `runId`       | `BC6hdJvyNQStvYLL8`                    | The run ID of the actor which was provided          |
-| `date`        | `2022-05-29`                           | The date at which the actor finished its run.       |
-| `now`         | `1653851198127`                        | The current time in milliseconds.                   |
-| `uuid`        | `b2638dac-00b5-4e29-b698-fe70b6ee6e0b` | A totally unique ID.                                |
-| `incrementor` | `3`                                    | An integer that increments up for every item.       |
+| Variable      | Example                                | Description                                         | Unique for each item |
+| ------------- | -------------------------------------- | --------------------------------------------------- | -------------------- |
+| `actorName`   | `my-actor`                             | The name of the actor matching the provided run ID. | No                   |
+| `runId`       | `BC6hdJvyNQStvYLL8`                    | The run ID of the actor which was provided          | No                   |
+| `date`        | `2022-05-29`                           | The date at which the actor finished its run.       | No                   |
+| `now`         | `1653851198127`                        | The current time in milliseconds.                   | Yes                  |
+| `uuid`        | `b2638dac-00b5-4e29-b698-fe70b6ee6e0b` | A totally unique ID.                                | Yes                  |
+| `incrementor` | `3`                                    | An integer that increments up for every item.       | Yes                  |
 
 Variables allow you to easily generate unique file names when writing multiple files (preventing files from being overwritten). `now` and `uuid` are great options when you need unique values. Here is an example of some variables being used in the actor's input:
 
@@ -43,7 +43,7 @@ Variables allow you to easily generate unique file names when writing multiple f
 }
 ```
 
-> Notice, you must wrap a variable name in `{curlyBraces}` for it to work.
+> Notice that you must wrap a variable name in `{curlyBraces}` for it to work.
 
 Here is what the final path for one file might look like with this configuration:
 
@@ -51,4 +51,4 @@ Here is what the final path for one file might look like with this configuration
 my-actor/datasets/2022-05-29/b2638dac-00b5-4e29-b698-fe70b6ee6e0b-item7.json
 ```
 
-By default, the actor will write the entire dataset as one file in the S3 bucket. In order to write each dataset item as a separate file in the S3 bucket, set `separateItems` to `true`. When you have this option set to `true`, ensure that you are using at least one
+By default, the actor will write the entire dataset as one file in the S3 bucket. In order to write each dataset item as a separate file in the S3 bucket, set `separateItems` to `true`. When you have this option set to `true`, ensure that you are using at least one unique variable in the `fileName`, otherwise it will keep writing and overwriting the same file (unless you use unique variables in the `pathName`, however, that is not recommended).

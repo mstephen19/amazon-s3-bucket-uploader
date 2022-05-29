@@ -9,7 +9,8 @@
             "type": "string",
             "description": "The name of the bucket.",
             "editor": "textfield",
-            "sectionCaption": "Bucket configuration"
+            "sectionCaption": "Bucket configuration",
+            "example": "my-bucket-name"
         },
         "region": {
             "title": "Bucket region",
@@ -50,25 +51,28 @@
             "title": "Access key",
             "type": "string",
             "description": "The access key found on your AWS account.",
-            "editor": "textfield"
+            "editor": "textfield",
+            "example": "OYIAZ6R3TZ9LK2UXZGV5"
         },
         "secretAccessKey": {
             "title": "Secret access key",
             "type": "string",
             "description": "The secret access key found on your AWS account.",
-            "editor": "textfield"
+            "editor": "textfield",
+            "example": "8vTy4zsSmjLiiRS9hSOeRPHRC6cNRC2y57r4KGSY"
         },
         "actorRunId": {
             "title": "Actor run ID",
             "type": "string",
             "description": "The ID of the actor's run.",
             "editor": "textfield",
-            "sectionCaption": "Data configuration"
+            "sectionCaption": "Data configuration",
+            "example": "BC6hdJvyNQStvYLL8"
         },
         "pathName": {
             "title": "Path name",
             "type": "string",
-            "description": "The path you'd like each record to live in. Check the README to learn about which variables are available.",
+            "description": "The path you'd like each record to live in. Check the README to learn about which variables are available. It is not recommended to use unique variables in the path name.",
             "prefill": "{actorName}/runs/{date}",
             "editor": "textfield",
             "pattern": "^[^\\.|\\/][^\\.]+[^\\.|\\/]$"
