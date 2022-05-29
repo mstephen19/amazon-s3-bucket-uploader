@@ -4,14 +4,16 @@ import type { Input } from '../types';
 
 type GetItemsInput = Pick<Input, 'separateItems'> & { defaultDatasetId: string };
 
+/**
+ * Grab the dataset items. Based on separateItems, either return an array with a single buffer
+ * for the whole dataset, or an array of buffers - each buffer being an item in the dataset
+ */
 const getItems = async ({ separateItems, defaultDatasetId }: GetItemsInput): Promise<Buffer[]> => {
     try {
         const client = Apify.newClient();
 
         // Download the items
-        const buffer = await client
-            .dataset(defaultDatasetId)
-            .downloadItems(DownloadItemsFormat.JSON);
+        const buffer = await client.dataset(defaultDatasetId).downloadItems(DownloadItemsFormat.JSON);
 
         // If they don't want separate items
         // Return an array with the whole dataset buffer

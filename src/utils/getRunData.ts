@@ -1,5 +1,8 @@
 import Apify from 'apify';
 
+/**
+ * Query the run for its defaultDatasetId and finishedAt time, then query the actor for its name.
+ */
 const getRunData = async (runId: string) => {
     try {
         const client = Apify.newClient();

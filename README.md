@@ -18,7 +18,7 @@ This section contains details for configuring your bucket. Ensure that you've fi
 
 In this section, you provide the run ID of the actor, as well as the path for the item and the file name. There are some restrictions for the `fileName` and `pathName` inputs as to prevent unnecessary errors:
 
--   `pathName` cannot start with or end with a `/` symbol.
+-   `pathName` **cannot** start with or end with a `/` symbol.
 -   Neither field can include a period (`.`) character. (the file extension will be automatically added for you)
 -   `fileName` can't include any `/` characters.
 
@@ -33,12 +33,12 @@ Within `pathName` and `fileName`, you have access to 6 variables:
 | `uuid`        | `b2638dac-00b5-4e29-b698-fe70b6ee6e0b` | A totally unique ID.                                |
 | `incrementor` | `3`                                    | An integer that increments up for every item.       |
 
-Variables allow you to easily generate unique file names when writing multiple files (preventing files from being overwritten). `now` and `uuid` are great options when you need unique values. Here is an example of them being used in the actor's input:
+Variables allow you to easily generate unique file names when writing multiple files (preventing files from being overwritten). `now` and `uuid` are great options when you need unique values. Here is an example of some variables being used in the actor's input:
 
 ```JSON
 {
   "pathName": "{actorName}/datasets/{date}",
-  "fileName": "{uuid}-item",
+  "fileName": "{uuid}-item{incrementor}",
   "separateItems": true
 }
 ```
@@ -48,7 +48,7 @@ Variables allow you to easily generate unique file names when writing multiple f
 Here is what the final path for one file might look like with this configuration:
 
 ```text
-my-actor/datasets/2022-05-29/b2638dac-00b5-4e29-b698-fe70b6ee6e0b-item.json
+my-actor/datasets/2022-05-29/b2638dac-00b5-4e29-b698-fe70b6ee6e0b-item7.json
 ```
 
-By default, the actor will write the entire dataset as one file in the S3 bucket. In order to write each dataset item as a separate file in the S3 bucket, set `separateItems` to true.
+By default, the actor will write the entire dataset as one file in the S3 bucket. In order to write each dataset item as a separate file in the S3 bucket, set `separateItems` to `true`. When you have this option set to `true`, ensure that you are using at least one

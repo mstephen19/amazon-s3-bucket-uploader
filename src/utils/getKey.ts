@@ -1,6 +1,8 @@
 import { v4 } from 'uuid';
 import path from 'path';
 
+import { Variables } from '../consts';
+
 interface GetKeyInput {
     fileName: string;
     pathName: string;
@@ -10,6 +12,9 @@ interface GetKeyInput {
     incrementor: number;
 }
 
+/**
+ * Generate a "key" based on the fileName and pathName with all variables plugged in
+ */
 const getKey = ({
     fileName,
     pathName,
@@ -19,12 +24,12 @@ const getKey = ({
     incrementor,
 }: GetKeyInput) => {
     const vars = {
-        '{actorName}': actorName,
-        '{runId}': actorRunId,
-        '{date}': finishedAt.toISOString().split('T')[0],
-        '{now}': Date.now().toString(),
-        '{uuid}': v4(),
-        '{incrementor}': incrementor.toString(),
+        [Variables.ACTOR_NAME]: actorName,
+        [Variables.RUN_ID]: actorRunId,
+        [Variables.DATE]: finishedAt.toISOString().split('T')[0],
+        [Variables.NOW]: Date.now().toString(),
+        [Variables.UUID]: v4(),
+        [Variables.INCREMENTOR]: incrementor.toString(),
     };
 
     const [formattedPath, formattedFile] = [pathName, fileName].map((str) => {
