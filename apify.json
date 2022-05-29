@@ -1,0 +1,7 @@
+{
+	"name": "s3-bucket-uploader",
+	"version": "0.0",
+	"buildTag": "latest",
+	"env": null,
+	"template": "example_typescript"
+}

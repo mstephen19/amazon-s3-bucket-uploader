@@ -1,0 +1,93 @@
+{
+    "title": "S3 Bucket upload actor input schema",
+    "description": "Add your bucket's details, and specify where you want the data saved.",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "bucketName": {
+            "title": "Bucket name",
+            "type": "string",
+            "description": "The name of the bucket.",
+            "editor": "textfield",
+            "sectionCaption": "Bucket configuration"
+        },
+        "region": {
+            "title": "Bucket region",
+            "type": "string",
+            "description": "Select your bucket's region",
+            "editor": "select",
+            "default": "us-east-2",
+            "enum": [
+                "us-east-2",
+                "us-east-1",
+                "us-west-1",
+                "us-west-2",
+                "af-south-1",
+                "ap-east-1",
+                "ap-southeast-3",
+                "ap-south-1",
+                "ap-northeast-3",
+                "ap-northeast-2",
+                "ap-southeast-1",
+                "ap-southeast-2",
+                "ap-northeast-1",
+                "ca-central-1",
+                "cn-north-1",
+                "cn-northwest-1",
+                "eu-central-1",
+                "eu-west-1",
+                "eu-west-2",
+                "eu-south-1",
+                "eu-west-3",
+                "eu-north-1",
+                "sa-east-1",
+                "me-south-1",
+                "us-gov-east-1",
+                "us-gov-west-1"
+            ]
+        },
+        "accessKeyId": {
+            "title": "Access key",
+            "type": "string",
+            "description": "The access key found on your AWS account.",
+            "editor": "textfield"
+        },
+        "secretAccessKey": {
+            "title": "Secret access key",
+            "type": "string",
+            "description": "The secret access key found on your AWS account.",
+            "editor": "textfield"
+        },
+        "actorRunId": {
+            "title": "Actor run ID",
+            "type": "string",
+            "description": "The ID of the actor's run.",
+            "editor": "textfield",
+            "sectionCaption": "Data configuration"
+        },
+        "pathName": {
+            "title": "Path name",
+            "type": "string",
+            "description": "The path you'd like each record to live in. Check the README to learn about which variables are available.",
+            "prefill": "{actorName}/runs/{date}",
+            "editor": "textfield",
+            "pattern": "^[^\\.|\\/][^\\.]+[^\\.|\\/]$"
+        },
+        "fileName": {
+            "title": "File name",
+            "type": "string",
+            "description": "The name each file should have. You do not need to include the file's extension. Check the README to learn about which variables are available.",
+            "prefill": "{runId}-{incrementor}",
+            "editor": "textfield",
+            "pattern": "^[^\\.|\\/]+$"
+        },
+        "separateItems": {
+            "title": "Separate items",
+            "description": "When set to \"false\", the entire dataset will be uploaded as a single JSON file. When set to \"true\", each dataset item will be its own file.",
+            "type": "boolean",
+            "editor": "checkbox",
+            "default": false
+        }
+    },
+    "required": ["bucketName", "region", "accessKeyId", "secretAccessKey", "actorRunId", "fileName", "separateItems"]
+}
