@@ -10,17 +10,19 @@ Divided into two short sections, this actor's input is intuitive.
 
 ### Bucket configuration
 
-This section contains details for configuring your bucket. Ensure that you've filled in everything exactly right.
+This section contains details for configuring your bucket. Ensure that you've filled in everything exactly right, especially your credentials.
+
+> To learn more about how to get your credentials, check out [this](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-appendix-sign-up.html) page.
 
 ### Data configuration
 
 In this section, you provide the run ID of the actor, as well as the path for the item and the file name. There are some restrictions for the `fileName` and `pathName` inputs as to prevent unnecessary errors:
 
 -   `pathName` cannot start with or end with a `/` symbol.
--   Neither can include a period (`.`) character. (the file extension will be automatically added for you)
+-   Neither field can include a period (`.`) character. (the file extension will be automatically added for you)
 -   `fileName` can't include any `/` characters.
 
-Within `pathName` and `fileName`, you have access to 4 variables:
+Within `pathName` and `fileName`, you have access to 6 variables:
 
 | Variable      | Example                                | Description                                         |
 | ------------- | -------------------------------------- | --------------------------------------------------- |
