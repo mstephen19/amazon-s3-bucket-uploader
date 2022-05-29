@@ -62,7 +62,7 @@ Apify.main(async () => {
                 await client.send(command);
                 log.info('Successfully put object.');
             } catch (error) {
-                throw new Error(`Failed to put object: ${(error as Error)?.message}`);
+                throw new Error(`Failed to put object. Have you configured the bucket properly?: ${(error as Error)?.message}`);
             }
         })();
     });
